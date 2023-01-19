@@ -11,7 +11,13 @@ $conn = $db->getConn();
 require 'includes/edit-device-name.php';
 
 $data = Esp_ID::getAllByUSERID($conn, $_SESSION['user_id']);
-$activedevice;
+
+foreach ($data as $device) {
+  if (isset($_GET['id']) && $_GET['id'] == $device['esp_id']) {
+    $activedevice = $device;
+  }
+}
+
 $custom_pages = Custom_page::getByUSERID($conn, $_SESSION['user_id']);
 // var_dump($custom_pages);
 // exit;
@@ -63,7 +69,7 @@ $email = User::getEmail($conn, $_SESSION['user_id']);
 
 </head>
 
-<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+<body class="hold-transition dark-mode layout-top-nav">
   <div class="wrapper">
 
     <!-- Preloader -->
@@ -73,120 +79,65 @@ $email = User::getEmail($conn, $_SESSION['user_id']);
 
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand navbar-dark">
-      <!-- Left navbar links -->
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-        </li>
-        <li class="nav-item d-none d-sm-inline-block">
-          <a href="/dashboard" class="nav-link active">อปกรณ์ทั้งหมด</a>
-        </li>
-      </ul>
-      <!-- Right navbar links -->
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-            <i class="fas fa-expand-arrows-alt"></i>
-          </a>
-        </li>
-      </ul>
+
+      <div class="container-fluid">
+        <a href="/dashboard" class="navbar-brand">
+          <img src="../includes/img/LOGO.png" alt="BAN-GOO Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+          <span class="brand-text font-weight-light">BAN-GOO</span>
+        </a>
+
+        <!-- Left navbar links -->
+        <ul class="navbar-nav">
+          <li class="nav-item d-none d-sm-inline-block">
+            <a href="/dashboard" class="nav-link active">Device</a>
+          </li>
+          <li class="nav-item d-none d-sm-inline-block">
+            <a href="/dashboard/profile.php" class="nav-link">Profile</a>
+          </li>
+        </ul>
+        <!-- Right navbar links -->
+        <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
+
+          <li class="nav-item dropdown">
+            <a class="nav-link" data-toggle="dropdown" href="#">
+              <i class="fas fa-user"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+              <a href="#" class="dropdown-item">
+                <div class="media">
+                <i class="fas fa-user"></i>
+                  <div class="media-body">
+                    <h3 class="dropdown-item-title pl-2">
+                     <?= $email ?>
+                    </h3>
+                  </div>
+                </div>
+
+              </a>
+              <div class="dropdown-divider"></div>
+              <a href="../logout.php" class="dropdown-item">
+                <div class="media">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <div class="media-body">
+                    <h4 class="dropdown-item-title pl-2">
+                      Log out
+                    </h4>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+              <i class="fas fa-expand-arrows-alt"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
     </nav>
     <!-- /.navbar -->
 
-    <!-- Main Sidebar Container -->
-    <aside class="main-sidebar sidebar-dark-primary elevation-4">
-      <!-- Brand Logo -->
-      <a href="index.php" class="brand-link">
-        <img src="includes/img/LOGO.png" alt="IoTkiddie Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">IoTkiddie</span>
-      </a>
-
-      <!-- Sidebar -->
-      <div class="sidebar">
-        <!-- Sidebar user panel (optional) -->
-        <div class="user-panel mt-3 pb-1 mb-1 d-flex">
-          <div class="image">
-            <i class="fa-solid fa-user-large"></i>
-          </div>
-          <div class="info">
-            <?php if (empty($data)) : {
-
-                echo ("<a href='profile.php' class='d-block'>" . $email . "</a>");
-              } ?>
-            <?php else : ?>
-              <a href='profile.php' class='d-block'>
-                <?= $data[0]['email'] ?></a>
-            <?php endif; ?>
-            <div class="d-block">
-              <a href="../logout.php" class="pt-2">
-                <i class="fa-solid fa-right-from-bracket"></i>
-                Log out</a>
-            </div>
-          </div>
-
-        </div>
-
-        <!-- Sidebar Menu -->
-        <nav class="mt-2">
-          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-            <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-            <!-- <li class="nav-header">Device</li> -->
-            <li class="nav-item">
-              <a href="/dashboard" class="nav-link">
-                <i class="nav-icon fas fa-tachometer-alt"></i>
-                <p>
-                  Device
-                  <i class="right fas fa-angle-left"></i>
-                </p>
-              </a>
-
-              <!-- Device dashboard -->
-              <?php if (!empty($data)) : ?>
-                <?php foreach ($data as $device) : ?>
-                  <ul class="nav nav-treeview">
-                    <li class="nav-item">
-                      <?php if (isset($_GET['id']) && $_GET['id'] == $device['esp_id']) : ?>
-                        <a href="device.php?id=<?= $device['esp_id']; ?>" class="nav-link active">
-                          <?php
-                          (is_null($device['device_name']) ? $device['esp_id'] : $device['device_name']);
-                          $activedevice = $device;
-                          ?>
-                        <?php else : ?>
-                          <a href="device.php?id=<?= $device['esp_id']; ?>" class="nav-link">
-                          <?php endif; ?>
-                          <i class="far fa-circle nav-icon"></i>
-                          <?= (is_null($device['device_name']) ? $device['esp_id'] : $device['device_name']); ?>
-                          </a>
-                    </li>
-                  </ul>
-                <?php endforeach; ?>
-              <?php endif; ?>
-            </li>
-            <?php foreach ($custom_pages as $page) : ?>
-              <li class="nav-item">
-                <a href="customdashboard.php?p=<?= $page['id']; ?>" class="nav-link">
-                  <i class="nav-icon fa-solid fa-calculator"></i>
-                  <p>
-                    <?= $page['page']; ?>
-                  </p>
-                </a>
-              </li>
-            <?php endforeach; ?>
-            <li class="nav-item">
-              <a href="profile.php" class="nav-link">
-                <i class="nav-icon fas fa-solid fa-address-card"></i>
-                <p>
-                  Profile
-                </p>
-              </a>
-            </li>
-          </ul>
-        </nav>
-        <!-- /.sidebar-menu -->
-      </div>
-      <!-- /.sidebar -->
-    </aside>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">

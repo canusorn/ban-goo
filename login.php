@@ -31,6 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="/includes/img/favicon.ico">
     <title>IoT | Log in</title>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="dashboard/includes/plugins/fontawesome-free/css/all.min.css">
@@ -38,10 +39,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="dashboard/includes/dist/css/adminlte.min.css">
 </head>
 
-<body class="hold-transition login-page">
+<body class="hold-transition login-page text-center">
     <div class="login-box">
         <div class="login-logo">
-            <a href="/"><b>Login</b></a>
+            <img class="mb-4" src="includes/img/logo.png" alt="" width="100" height="100">
+            <h1 class="h3 mb-3 fw-normal">Login</h1>
         </div>
         <!-- /.login-logo -->
         <div class="card">
@@ -72,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-4 mx-auto">
+                        <div class="mx-auto">
                             <button type="submit" class="btn btn-primary btn-block">เข้าสู่ระบบ</button>
                         </div>
                     </div>
