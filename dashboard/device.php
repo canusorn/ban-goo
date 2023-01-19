@@ -84,7 +84,7 @@ if ($esp_id) {
           <a class="nav-link btn-secondary text-light <?= ($project_id == $project  && !isset($_GET['p'])) ? "active" : "" ?>" id="project-<?= $project_id ?>-tab" href="device.php?id=<?= $_GET['id'] ?>&project=<?= $project_id ?>">
 
             <?php if ($project_id == 0) : ?>
-              Custom</a></li>
+              Data</a></li>
       <?php elseif ($project_id == 1) : ?>
         AC Meter</a></li>
       <?php elseif ($project_id == 2) : ?>
