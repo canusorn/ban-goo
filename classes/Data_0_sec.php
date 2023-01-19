@@ -94,15 +94,6 @@ class Data_0_sec
         return $stmt->fetch(\PDO::FETCH_ASSOC);
     }
 
-    // public static function checkExist($pdo, $tablename)
-    // {
-    //     $sql = "SELECT name FROM sqlite_master WHERE type='table' AND name='{$tablename}'";
-    //     //var_dump($sql);
-    //     $stmt = $pdo->query($sql);
-    //     return $stmt->fetch();
-    // }
-
-
     public static function getLast($esp_id, $columns = '*')
     {
         $pdo = new \PDO("sqlite:" . $_SERVER['DOCUMENT_ROOT'] . "/db/$esp_id.db");

@@ -220,7 +220,7 @@ if (!isset($activedevice)) {
                                 <div class="card-body text-dark">
 
                                     <div class="form-group mb-3" id="getLineToken">
-                                        <label for="linetoken" data-toggle="tooltip" title="Token ที่ได้จาก Line notify">Line Token <a target="_blank" href="linetoken_get.php?id=<?= $_GET['id'] ?>">สมัครรับโทเค็น</a></label>
+                                        <label for="linetoken" data-toggle="tooltip" title="Token ที่ได้จาก Line notify">Line Token <a target="_blank" href="https://notify-bot.line.me/th/">สมัครรับโทเค็น</a></label>
                                         <input type="text" class="form-control" id="linetoken" placeholder="Line token">
                                     </div>
                                     <div class="form-check mb-2">
@@ -239,63 +239,7 @@ if (!isset($activedevice)) {
                             </div>
                         </div>
 
-                        <div class="col-6">
-                            <div class="card">
-                                <!-- Loading (remove the following to stop the loading)-->
-                                <div class="overlay dark">
-                                    <i class="fas fa-3x fa-sync-alt"></i>
-                                    <h3></h3>
-                                </div>
-                                <!-- end loading -->
-
-                                <div class="card-header">
-                                    <h5 class="card-title"><i class="fa-brands fa-line"></i> Line แจ้งเตือนตามเวลา</h5>
-                                    <div class="card-tools">
-                                        <button type="button" class="btn btn-tool text-light" data-card-widget="collapse">
-                                            <i class="fas fa-minus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                                <!-- /.card-header -->
-                                <div class="card-body text-dark">
-
-                                    <div id="line-timer">
-                                        <fieldset>
-                                            <legend>เพิ่มการแจ้งเตือน</legend>
-
-                                            <form method="post" action="ajax/line-timer.php" id="line-timer-form">
-                                                <div class="row">
-
-                                                    <input type="hidden" name="id" value="<?= $_REQUEST['id'] ?>" />
-                                                    <input type="hidden" name="skey" value="<?= $_SESSION['skey'] ?>" />
-
-                                                    <div class="col-auto">
-                                                        <div class="form-group">
-                                                            <label for="timer" data-toggle="tooltip" title="เลือกเวลาที่ต้องการให้แจ้งเตือน">เวลาแจ้งเตือน</label> <input type="text" class="timer form-control form-control-border" placeholder="เวลาแจ้งเตือน" name="timer" required />
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="justify-content-end">
-                                                        <button type="submit" class="btn btn-primary" id="timer_add"><i class="fa-solid fa-circle-plus"></i> เพิ่ม</button>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </fieldset>
-
-                                        <hr class="mb-3">
-                                        <h3>Timer ที่ใช้งาน</h3>
-                                        <table class="table table-hover table-striped text-center text-light" id="line-timer_table" style="width:100%">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">เวลา</th>
-                                                    <th scope="col">ลบ</th>
-                                                </tr>
-                                            </thead>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
             </div>

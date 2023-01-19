@@ -2,7 +2,7 @@
 
 // local server
 define('DB_HOST','localhost');
-define('DB_NAME','iotbundle');
+define('DB_NAME','bangooco_iot');
 define('DB_USER','root');
 define('DB_PASS','');
 

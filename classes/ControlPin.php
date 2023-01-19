@@ -44,6 +44,7 @@ class ControlPin{
 
     public function getLast($columns = '*')
     {
+        $this->createTables();
         $sql = "SELECT $columns FROM pin 
                 WHERE esp_id = $this->esp_id";
 

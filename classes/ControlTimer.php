@@ -50,6 +50,7 @@ class ControlTimer
 
     public function getLast($columns = '*')
     {
+        $this->createTables();
         $sql = "SELECT $columns FROM timer 
                 WHERE esp_id = $this->esp_id";
 

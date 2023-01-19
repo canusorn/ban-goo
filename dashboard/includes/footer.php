@@ -54,5 +54,3 @@
       </body>
 
       </html>
-
-      <script src="includes/custom/<?= $_REQUEST['id'] ?>.js"></script>

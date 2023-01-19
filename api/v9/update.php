@@ -1,14 +1,5 @@
 <?php
 
-//     json format
-// {
-//     "esp_id" : 123456,
-//     "user_id" : 1,
-//     "data" : [{"project_id":1,"voltage":220,"current":1,"power":220,"energy":100,"frequency":50,"pf":1.0},
-//     {"project_id":2,"temp":220,"humid":1}],
-//     "io_c" : 2,
-//     "io_s" : 2,
-// }
 require($_SERVER['DOCUMENT_ROOT'] . '/includes/init.php');
 
 $_POST = json_decode(file_get_contents('php://input'), true);

@@ -141,36 +141,6 @@ class Esp_ID
         return $stmt->execute();
     }
 
-    public static function getOffline($conn, $esp_id = NULL, $time = NULL)
-    {
-        if (is_null($time)) {
-            date_default_timezone_set('Asia/Bangkok');
-            $dateTime = new DateTime('-' . OFFLINETIME . ' seconds');
-            $time = $dateTime->format('Y-m-d H:i:s');
-        }
-        $sql = "SELECT esp_id FROM `esp_id` WHERE time(lastupdate) < '$time' AND lastupdate IS NOT NULL";
-
-        if (!is_null($esp_id)) {
-            if (is_int($esp_id))
-                $sql .= " AND esp_id = $esp_id";
-            else if (is_array($esp_id) && !empty($esp_id)) {
-                $sql .= " AND (";
-                foreach ($esp_id as $i => $id) {
-                    if ($i) $sql .= " OR ";
-                    $sql .= "esp_id = " . $id;
-                }
-                $sql .= ")";
-            }
-        }
-        // echo "<br>sql:";
-        // var_dump($sql);
-        $result = $conn->query($sql);
-        $data = $result->fetchAll(PDO::FETCH_ASSOC);
-        // echo "<br>datafrommysql:";
-        // var_dump($data);
-        return $data;
-    }
-
     /*public static function getByUserID($conn, $user_id, $columns = '*')
     {
         $sql = "SELECT $columns

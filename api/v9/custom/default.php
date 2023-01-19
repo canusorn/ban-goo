@@ -189,14 +189,6 @@ if ($interval_min && $needsecupdate) {
             if (isset($line_token['line_token']) && $line_token['daily_notify'] &&  $payload["status"]["sec"] == 'new sec data' &&  $payload["status"]["day"] == 'new day data') {
                 $line_sent[] = [0, $data_day->c0, $data_day->c1, $data_day->c2, $data_day->c3, $data_day->c4, $data_day->c5, $data_day->c6, $data_day->c7, $data_day->c8, $data_day->c9, $data_sec->esp_id, $line_token['line_token']];
                 $line_sent_status .= "project 0 line in condition \n";
-                // $line_result = Linenotify::sentEnergy($conn, $data_day->energy, $data_sec->esp_id, $line_token['line_token']);
-                // if ($line_result == "success")
-                //     $payload["status"]["line"] = "sent";
-                // else {
-                //     $datalog = $data_sec->time . "\n-ESPID:" . $data_sec->esp_id .  "\n-Result:" . $line_result . "\n\n";
-                //     file_put_contents('1acmeter.log', $datalog, FILE_APPEND);
-                //     $payload["status"]["line"] = "sent failed";
-                // }
             }
 
             // detele old data

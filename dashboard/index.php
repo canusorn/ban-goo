@@ -30,7 +30,9 @@
             <div class="info-box">
               <span class="info-box-icon bg-info elevation-1">
 
-                <?php if ($device['project_id'] == 1) : ?>
+                <?php if ($device['project_id'] == 0) : ?>
+                  <i class="fa-solid fa-plug"></i>
+                <?php elseif ($device['project_id'] == 1) : ?>
                   <i class="fa-solid fa-plug"></i>
                 <?php elseif ($device['project_id'] == 2) : ?>
                   <i class="fa-solid fa-head-side-mask"></i>
