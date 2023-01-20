@@ -26,7 +26,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
             <!-- <div class="navbar-header"> -->
-            <a class="navbar-brand" href="/"><img src="includes/img/LOGO.png" alt="" width="50">IoT kiddie</a>
+            <a class="navbar-brand" href="/"><img src="includes/img/logo.png" alt="" width="50">IoT kiddie</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
