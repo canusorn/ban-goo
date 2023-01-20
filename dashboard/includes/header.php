@@ -74,7 +74,7 @@ $email = User::getEmail($conn, $_SESSION['user_id']);
 
     <!-- Preloader -->
     <div class="preloader flex-column justify-content-center align-items-center">
-      <img class="animation__wobble" src="includes/img/LOGO.png" alt="IoTbundle LOGO" height="60" width="60">
+      <img class="animation__wobble" src="../includes/img/logo.png" alt="IoTbundle LOGO" height="60" width="60">
     </div>
 
     <!-- Navbar -->
@@ -82,7 +82,7 @@ $email = User::getEmail($conn, $_SESSION['user_id']);
 
       <div class="container-fluid">
         <a href="/dashboard" class="navbar-brand">
-          <img src="../includes/img/LOGO.png" alt="BAN-GOO Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+          <img src="../includes/img/logo.png" alt="BAN-GOO Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
           <span class="brand-text font-weight-light">BAN-GOO</span>
         </a>
 
