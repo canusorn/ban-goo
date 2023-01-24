@@ -8,7 +8,7 @@ $(function () {
     //     maxTime: new Date(0, 0, 0, 2, 0, 0),
     //     interval: 10,
     // });
-
+    
     var pin_table = $('#pin_table').DataTable({
         "ajax": "ajax/pin.php?id=" + esp_id + "&skey=" + sk,
         dom: 'tp',

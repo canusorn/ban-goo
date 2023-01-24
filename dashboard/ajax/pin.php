@@ -1,6 +1,5 @@
 <?php
 
-
 require($_SERVER['DOCUMENT_ROOT'] . '/includes/init.php');
 
 if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) &&  strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
