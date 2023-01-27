@@ -25,13 +25,6 @@ if (isset($_GET['id'])) {
 <div class="content-header">
   <div class="container-fluid">
 
-    <?php //if ($activedevice['project_id'] == '1') : 
-    ?>
-    <!-- <div class="alert alert-primary" role="alert">
-        เรียนผู้ใช้งานทุกท่าน สำหรับ AC meter จะมีการปรับปรุงระบบดาต้าเบสเพื่อให้มีประสิทธิภาพมากขึ้น ทำให้บางช่วงจะยังไม่สามารถดูข้อมูลย้อนหลังได้ ขออภัยอย่างสูงครับ
-      </div> -->
-    <?php //endif; 
-    ?>
 
     <div class="row mb-2">
       <div class="col-sm-6">
@@ -71,6 +64,10 @@ if ($esp_id) {
 
     <ul class="nav nav-pills mb-3 ml-3" id="project-tab">
 
+      <li class="nav-item">
+        <a class="nav-link btn-secondary text-light <?= isset($_GET['p']) && $_GET['p'] == "dashboard"  ? "active" : "" ?>" id="dashboard-tab" href="device.php?id=<?= $_GET['id'] ?>&p=dashboard">Dashboard</a>
+      </li>
+
       <?php
 
       if (isset($_GET['project']) && in_array($_GET['project'], $projects)) {
@@ -81,10 +78,11 @@ if ($esp_id) {
 
       foreach ($projects as $i => $project_id) : ?>
         <li class="nav-item">
-          <a class="nav-link btn-secondary text-light <?= ($project_id == $project  && !isset($_GET['p'])) ? "active" : "" ?>" id="project-<?= $project_id ?>-tab" href="device.php?id=<?= $_GET['id'] ?>&project=<?= $project_id ?>">
+          <a class="nav-link btn-secondary text-light <?= ($project_id == $project  && !isset($_GET['p'])) ? "active" : "" ?>" id="project-<?= $project_id ?>-tab" href="device.php?id=<?= $_GET['id'] ?>&p=data&project=<?= $project_id ?>">
 
             <?php if ($project_id == 0) : ?>
-              Data</a></li>
+              Data</a>
+        </li>
       <?php elseif ($project_id == 1) : ?>
         AC Meter</a></li>
       <?php elseif ($project_id == 2) : ?>
@@ -114,13 +112,12 @@ if ($esp_id) {
   <?php
   if (isset($_GET['p']) && $_GET['p'] == 'pin') {
     require 'includes/pin.php';
-  } else {
+  } else if (isset($_GET['p']) && $_GET['p'] == 'data' || isset($_GET['project'])) {
     if (!isset($project)) $project = $esp_id->project_id;
 
     if ($project == 0) {
-        require 'includes/custom/custom.php';
-    }
-    else if ($project == 1) {
+      require 'includes/custom/custom.php';
+    } else if ($project == 1) {
 
       if (!is_null($activedevice['version']) && $activedevice['version'] >= 9)
         require 'includes/01acmeter_v9.php';
@@ -146,6 +143,8 @@ if ($esp_id) {
     } else if ($project == 6) {
       require 'includes/06acmeter_3p_v9.php';
     }
+  } else {
+    require 'includes/dashboard.php';
   }
   ?>
 
