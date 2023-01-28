@@ -32,7 +32,7 @@ if ($esp_id) {
                 $conn = $db->getConn();
                 $lastupdate = Esp_ID::getByESPID($conn, $esp_id)->lastupdate;
 
-                if ($_REQUEST['point'] == 200) {
+                if ($_REQUEST['point'] == 200 || isset($_REQUEST['getlabel'])) {
                     $sec = new Data_0_sec($esp_id);
                     $label = $sec->getLabel();
                 }
