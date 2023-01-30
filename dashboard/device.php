@@ -62,10 +62,10 @@ if ($esp_id) {
   $projects = explode(",", $esp_id->project_id); ?>
   <?php if (count($projects) > 1 || (!is_null($activedevice['version']) && $activedevice['version'] >= 9)) : ?>
 
-    <div class="container">
+    <div class="container-fluid">
       <div class="d-flex justify-content-end">
         <h2 class="mr-3" id="this-time"></h2>
-        <ul class="nav nav-pills mb-3 ml-3 flex-right" id="project-tab">
+        <ul class="nav nav-pills mb-3 ml-3 mr-3 flex-right" id="project-tab">
 
           <li class="nav-item">
             <a class="nav-link btn-secondary text-light <?= isset($_GET['p']) && $_GET['p'] == "dashboard"  ? "active" : "" ?>" id="dashboard-tab" href="device.php?id=<?= $_GET['id'] ?>&p=dashboard">Dashboard</a>
