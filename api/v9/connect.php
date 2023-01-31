@@ -112,12 +112,13 @@ if (isset($_POST['email'])) {
                 $esp_id->device_name = $projectname['project_name'] . '-' . $_POST['esp_id'];
                 $esp_id->version = (isset($_POST['version']) ? $_POST['version'] : null);
                 $esp_id->create($conn);
+
+                $pin = new ControlPin();
+                $pin->esp_id = $esp_id->esp_id;
+                $pin->createDefault();
+
                 echo $user_id;
             } else {
-                date_default_timezone_set('Asia/Bangkok');
-                $dateTime = new DateTime();
-                $time = $dateTime->format('Y-m-d H:i:s');
-                Data_noauth::create($email, $_POST['esp_id'], $_POST['project_id'], $time);
                 echo "no auth device";
             }
         }

@@ -1,6 +1,7 @@
 <?php
 
-class ControlPin{
+class ControlPin
+{
     private $pdo;
     public $esp_id;
     public $pindata;
@@ -38,6 +39,13 @@ class ControlPin{
     public function create()
     {
         $sql = "replace into pin (esp_id, pindata, needupdate) values('$this->esp_id', '$this->pindata', $this->needupdate);";
+        // var_dump($sql);
+        return  $this->pdo->exec($sql);
+    }
+
+    public function createDefault()
+    {
+        $sql = 'INSERT INTO pin (esp_id,pindata,needupdate) VALUES ("' . $this->esp_id . '",\'[{"pin":"D5","mode":"OUTPUT","value":0,"detail":""},{"pin":"D6","mode":"INPUT","value":0,"detail":""}]\',"1")';
         // var_dump($sql);
         return  $this->pdo->exec($sql);
     }

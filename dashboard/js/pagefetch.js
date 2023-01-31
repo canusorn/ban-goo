@@ -2,6 +2,8 @@ $(function () {
 
     $('#project-0-tab').click(function (e) {
 
+        $("#this-time").hide();
+
         e.preventDefault();
 
         $.ajax({
@@ -24,6 +26,8 @@ $(function () {
     });
 
     $('#project-1-tab').click(function (e) {
+
+        $("#this-time").hide();
 
         e.preventDefault();
 
@@ -48,6 +52,8 @@ $(function () {
 
     $('#project-2-tab').click(function (e) {
 
+        $("#this-time").hide();
+
         e.preventDefault();
 
         $.ajax({
@@ -70,6 +76,8 @@ $(function () {
     });
 
     $('#project-3-tab').click(function (e) {
+
+        $("#this-time").hide();
 
         e.preventDefault();
 
@@ -94,6 +102,8 @@ $(function () {
 
     $('#project-4-tab').click(function (e) {
 
+        $("#this-time").hide();
+
         e.preventDefault();
 
         $.ajax({
@@ -116,6 +126,8 @@ $(function () {
     });
 
     $('#project-5-tab').click(function (e) {
+
+        $("#this-time").hide();
 
         e.preventDefault();
 
@@ -140,6 +152,8 @@ $(function () {
 
     $('#project-6-tab').click(function (e) {
 
+        $("#this-time").hide();
+
         e.preventDefault();
 
         $.ajax({
@@ -163,6 +177,8 @@ $(function () {
 
     $('#pin-tab').click(function (e) {
 
+        $("#this-time").hide();
+
         e.preventDefault();
 
         $.ajax({
@@ -185,6 +201,8 @@ $(function () {
     });
 
     $('#dashboard-tab').click(function (e) {
+
+        $("#this-time").show();
 
         e.preventDefault();
 

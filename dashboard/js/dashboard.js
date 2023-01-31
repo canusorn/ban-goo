@@ -88,6 +88,9 @@ $(document).ready(function () {
                     $("#var-7-label").html(var7_label);
                     $("#var-8-label").html(var8_label);
                     $("#var-9-label").html(var9_label);
+
+                    $("#this-time").html(fulltime);
+
                 }
             }
         })
@@ -120,7 +123,7 @@ $(document).ready(function () {
                     $("#var-7-value").html(json.var7[0]);
                     $("#var-8-value").html(json.var8[0]);
                     $("#var-9-value").html(json.var9[0]);
-
+                    $("#this-time").html(fulltime);
                 }
             }
         })
@@ -129,4 +132,8 @@ $(document).ready(function () {
     getlabel();
 
     setInterval(updateLastData, 5000);
+
+    $("#project-tab > li > a").removeClass("active");
+    $('#pin-tab').removeClass("active");
+    $('#dashboard-tab').addClass("active");
 });

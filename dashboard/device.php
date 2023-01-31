@@ -199,6 +199,6 @@ if ($esp_id) {
     $("a[href='/dashboard']").parent().addClass("menu-open");
 
     
-    setInterval(function(){$("#this-time").html(moment().format('DD-MM-YYYY HH:mm:ss'));},1000);
+    // setInterval(function(){$("#this-time").html(moment().format('DD-MM-YYYY HH:mm:ss'));},1000);
   });
 </script>
