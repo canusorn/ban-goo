@@ -8,7 +8,7 @@ require 'includes/header.php';
 
 
 <script type="text/javascript">
-  document.title = "<?= $activedevice['device_name'] . " | IoTkiddie Dashboard" ?>"
+  document.title = "<?= $activedevice['device_name'] . " | BAN-GOO Dashboard" ?>"
 </script>
 
 <?php

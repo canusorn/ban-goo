@@ -17,24 +17,24 @@
 
  <!-- Main content -->
  <section class="content">
-     <div class="container-fluid text-center">
+     <div class="container-fluid text-right">
          <div class="row">
              <div class="col-md-4"></div>
-             <div class="col-md-2">
-                 <!-- <div class="card">
+             <div class="col">
+                 <div class="card">
                      <div class="card-body">
                          <div class="container">
                              <div class="col">
-                                 <div class="row">
-                                     <p class="card-text">control</p>
+                                 <div class="row justify-content-end">
+                                     <div class="custom-control custom-switch"><input type="checkbox" class="custom-control-input pin-switch" id="output-D5"><label class="custom-control-label" for="output-D5">D5</label></div>
                                  </div>
-                                 <div class="row">
-                                     <p class="card-text">control</p>
+                                 <div class="row justify-content-end">
+                                     <p class="card-text"><span style="font-size: 2em; color:gray;"><i class="fa-regular fa-lightbulb mr-2"></i></span><B>D6</B></p>
                                  </div>
                              </div>
                          </div>
                      </div>
-                 </div> -->
+                 </div>
              </div>
              <div class="col-md-3">
                  <div class="card">

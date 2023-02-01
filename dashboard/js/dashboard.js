@@ -129,9 +129,73 @@ $(document).ready(function () {
         })
     }
 
+    function pinUpdate() {
+        $.ajax({
+            url: "ajax/pin.php",
+            type: "post",
+            data: {
+                id: esp_id,
+                skey: sk
+            },
+            success: function (data) {
+                // console.log(data);
+                var json = JSON.parse(data);
+                // console.log(json.data);
+
+                let d5, d6;
+
+                for (var i = 0; i < json.data.length; i++) {
+                    if (json.data[i].indexOf("D5") != -1) {
+                        d5 = i;
+                    } else if (json.data[i].indexOf("D6") != -1) {
+                        d6 = i;
+                    }
+                }
+
+                // console.log(json.data[d5][2]);
+                if (json.data[d5][2]==1) {
+                    $("#output-D5").attr("checked", true);
+                } else {
+                    $("#output-D5").attr("checked", false);
+                }
+
+                if (json.data[d6][2]==1) {
+                    $(".fa-lightbulb").addClass("fa-solid");
+                    $(".fa-lightbulb").removeClass("fa-regular");
+                    $(".fa-lightbulb").parent().css("color","red");
+                } else {
+                    $(".fa-lightbulb").removeClass("fa-solid");
+                    $(".fa-lightbulb").addClass("fa-regular");
+                    $(".fa-lightbulb").parent().css("color","gray");
+                }
+
+            }
+        })
+    }
+
+    $("#output-D5").click(function (e) {
+        // alert("click");
+        let pin = $(this).attr('id').split("-");
+        let value = ($(this).prop('checked')) ? 1 : 0;
+        // console.log(pin[1] + " checkbox : " + value);
+
+        $.ajax({
+            url: 'ajax/pin.php?id=' + esp_id + '&skey=' + sk + '&pin=' + pin[1] + '&changevalue=' + value,
+            success: function (data) {
+                // console.log(data);
+                if (data == 1) {
+
+                }
+            }
+        });
+
+    });
+
     getlabel();
+    pinUpdate();
 
     setInterval(updateLastData, 5000);
+    setInterval(pinUpdate, 5000);
 
     $("#project-tab > li > a").removeClass("active");
     $('#pin-tab').removeClass("active");
