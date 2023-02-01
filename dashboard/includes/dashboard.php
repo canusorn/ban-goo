@@ -19,16 +19,16 @@
  <section class="content">
      <div class="container-fluid text-right">
          <div class="row">
-             <div class="col-md-4"></div>
-             <div class="col">
+             <div class="col-auto mr-auto"></div>
+             <div class="col-auto">
                  <div class="card">
                      <div class="card-body">
                          <div class="container">
-                             <div class="col">
-                                 <div class="row justify-content-end">
+                             <div class="col float">
+                                 <div class="row justify-content-center">
                                      <div class="custom-control custom-switch"><input type="checkbox" class="custom-control-input pin-switch" id="output-D5"><label class="custom-control-label" for="output-D5">D5</label></div>
                                  </div>
-                                 <div class="row justify-content-end">
+                                 <div class="row justify-content-center">
                                      <p class="card-text"><span style="font-size: 2em; color:gray;"><i class="fa-regular fa-lightbulb mr-2"></i></span><B>D6</B></p>
                                  </div>
                              </div>
