@@ -14,15 +14,11 @@ if (!empty($_POST) && isset($_POST['esp_id']) && isset($_POST['user_id'])) {
 
     $esp_id = Esp_ID::getByESPID($conn, $_POST['esp_id']);
 
-    // var_dump($esp_id);
-
 
     $payload = [];  // store return status
     $line_sent = []; // store line sent
     $line_sent_status = $dateTime->format('Y-m-d H:i:s') . "  esp id : " . $_POST['esp_id'] . "\n";; // store line sent status
 
-    // check esp id with user id
-    // if ($esp_id->user_id == $_POST['user_id']) {
 
         // update lastupdate from device
         Esp_ID::lastTimeUpdate($conn, $_POST['esp_id'], $dateTime->format('Y-m-d H:i:s'));
@@ -41,12 +37,9 @@ if (!empty($_POST) && isset($_POST['esp_id']) && isset($_POST['user_id'])) {
                 require("4dht.php");
             } else if ($data['project_id'] == 6) {
                 require("6acmeter3p.php");
+            }else if ($data['project_id'] == 7) {
+                require("7value32.php");
             }
-            // echo '<br>line:';
-            // var_dump($line_sent);
-            // echo '<br>payload:';
-            // var_dump($payload);
-            // echo '<br>';
         }
 
         // update io
@@ -72,12 +65,4 @@ if (!empty($_POST) && isset($_POST['esp_id']) && isset($_POST['user_id'])) {
 
         // notify line sent
         require 'line_noti.php';
-    // } else {
-    //     echo ("0" . "&" . "wrong user");
-    // }
 }
-
-
-
-// var_dump($_POST);
-// var_dump($_SERVER);
