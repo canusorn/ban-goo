@@ -203,7 +203,7 @@ if (!isset($activedevice)) {
 
 <!-- for rename var -->
 <div class="modal fade" id="editvarname" tabindex="-1" aria-labelledby="edit-device-name" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <form id="edit-var-form" method="post" action="ajax/07value32.php">
                 <div class="modal-header">
@@ -240,6 +240,7 @@ if (!isset($activedevice)) {
     var p_id = 7;
     var esp_id = <?= $_REQUEST['id'] ?>;
     var sk = '<?= $_SESSION['skey']; ?>';
+    $("#dashboard-tab").remove();
 </script>
 <script type="text/javascript" src="js/07value32.js?n=8"></script>
 <script type="text/javascript" src="js/line-timer.js?n=1"></script>

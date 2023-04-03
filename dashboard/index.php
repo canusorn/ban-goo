@@ -48,7 +48,7 @@
 
               </span>
               <div class="info-box-content">
-                <span class="info-box-text"><a href="device.php?id=<?= $device['esp_id']; ?>"><?= (is_null($device['device_name']) ? $device['esp_id'] : $device['device_name']); ?></a></span>
+                <span class="info-box-text"><a href="device.php?id=<?= $device['esp_id']; ?><?= (($device['project_id']) == 7 ? "&project=7" : ""); ?>"><?= (is_null($device['device_name']) ? $device['esp_id'] : $device['device_name']); ?></a></span>
                 <span class="info-box-number">
                   <!-- <small>%</small> -->
                 </span>
