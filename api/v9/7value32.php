@@ -295,7 +295,7 @@ if ($interval_min && $needsecupdate) {
             ($interval_day >= 2 && !is_null($lastDays))
         ) {
 
-            $line_token = Linenotify::getAll($data_sec->esp_id, 0);
+            $line_token = Linenotify::getAll($data_sec->esp_id, 7);
             if (isset($line_token['line_token']) && $line_token['daily_notify'] &&  $payload["status"]["sec"] == 'new sec data' &&  $payload["status"]["day"] == 'new day data') {
                 $line_sent[] = [0, $data_day->c0, $data_day->c1, $data_day->c2, $data_day->c3, $data_day->c4, $data_day->c5, $data_day->c6, $data_day->c7, $data_day->c8, $data_day->c9, $data_sec->esp_id, $line_token['line_token']];
                 $line_sent_status .= "project 7 line in condition \n";

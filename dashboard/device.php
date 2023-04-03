@@ -98,6 +98,8 @@ if ($esp_id) {
             SmartFarm Solar</a></li>
           <?php elseif ($project_id == 6) : ?>
             AC Meter 3 Phase</a></li>
+            <?php elseif ($project_id == 7) : ?>
+            Data 32 value</a></li>
           <?php endif; ?>
         <?php endforeach; ?>
 
@@ -147,6 +149,8 @@ if ($esp_id) {
         require 'includes/05smartfarm-solar.php';
     } else if ($project == 6) {
       require 'includes/06acmeter_3p_v9.php';
+    } else if ($project == 7) {
+      require 'includes/07value32.php';
     }
   } else {
     require 'includes/dashboard.php';
@@ -198,7 +202,7 @@ if ($esp_id) {
     $("a[href='/dashboard']").addClass("active");
     $("a[href='/dashboard']").parent().addClass("menu-open");
 
-    
+
     // setInterval(function(){$("#this-time").html(moment().format('DD-MM-YYYY HH:mm:ss'));},1000);
   });
 </script>

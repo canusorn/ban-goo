@@ -30,4 +30,6 @@ if ($_POST['p_id'] == 0) {
     require '../includes/05smartfarm-solar.php';
 } elseif ($_POST['p_id'] == 6) {
     require '../includes/06acmeter_3p_v9.php';
+}elseif ($_POST['p_id'] == 7) {
+    require '../includes/07value32.php';
 }
