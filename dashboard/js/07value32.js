@@ -182,6 +182,8 @@ $(document).ready(function () {
     var setting;
     var online_state;
 
+    var colorObject;
+
     var Chart0;
     displayChart();
     getLastData();
@@ -6027,6 +6029,8 @@ $(document).ready(function () {
                     $(".overlay").fadeOut(100);
                     setInterval(updateLastData, 5000); // 1000 = 1 second
                     setInterval(updateStatus, 5000); // 1000 = 1 second
+
+                    getColor();
                 }
                 catch (err) {
                     console.log(err.message);
@@ -6194,6 +6198,8 @@ $(document).ready(function () {
                     Chart31.update();
                 }
                 lastupdate = json.lastupdate;
+
+                colorHandle();
             }
         })
     };
@@ -8255,4 +8261,551 @@ $(document).ready(function () {
         });
 
     });
+
+    $("#edit-color-form").submit(function (e) {
+
+        e.preventDefault();
+
+        var form = $(this);
+        var actionUrl = form.attr('action');
+
+        //add disabled
+        form.attr('disabled', 'disabled');
+
+        // console.log(form.serialize());
+
+        $.ajax({
+            type: "POST",
+            url: actionUrl,
+            data: form.serialize(), // serializes the form's elements.
+            success: function (data) {
+                // $('#var-name-1').val();
+                // console.log(data);
+                // console.log($('#var-name-1').val());
+                color_table.ajax.reload(null, false);
+
+                //remove it
+                form.removeAttr("disabled");
+                getColor();
+                // $('#editvarcolor').modal('hide');
+            }
+        });
+    });
+
+    function getColor() {
+
+        $.ajax({
+            url: 'ajax/07value32.php?action=getcolor',
+            type: "post",
+            data: {
+                id: esp_id,
+                skey: sk
+            },
+            success: function (data) {
+                let json = JSON.parse(data);
+                console.log(json);
+                colorObject = json;
+                // colorHandle();
+            }
+        })
+    }
+
+    function setColor() {
+        $("#var-color-0").text(var0_label);
+        $("#var-color-1").text(var1_label);
+        $("#var-color-2").text(var2_label);
+        $("#var-color-3").text(var3_label);
+        $("#var-color-4").text(var4_label);
+        $("#var-color-5").text(var5_label);
+        $("#var-color-6").text(var6_label);
+        $("#var-color-7").text(var7_label);
+        $("#var-color-8").text(var8_label);
+        $("#var-color-9").text(var9_label);
+        $("#var-color-10").text(var10_label);
+        $("#var-color11").text(var11_label);
+        $("#var-color-12").text(var12_label);
+        $("#var-color-13").text(var13_label);
+        $("#var-color-14").text(var14_label);
+        $("#var-color-15").text(var15_label);
+        $("#var-color-16").text(var16_label);
+        $("#var-color-17").text(var17_label);
+        $("#var-color-18").text(var18_label);
+        $("#var-color-19").text(var19_label);
+        $("#var-color-20").text(var20_label);
+        $("#var-color-21").text(var21_label);
+        $("#var-color-22").text(var22_label);
+        $("#var-color-23").text(var23_label);
+        $("#var-color-24").text(var24_label);
+        $("#var-color-25").text(var25_label);
+        $("#var-color-26").text(var26_label);
+        $("#var-color-27").text(var27_label);
+        $("#var-color-28").text(var28_label);
+        $("#var-color-29").text(var29_label);
+        $("#var-color-30").text(var30_label);
+        $("#var-color-31").text(var31_label);
+    }
+
+    var color_table = $('#color_table').DataTable({
+        "ajax": "ajax/07value32.php?action=getcolor&id=" + esp_id + "&skey=" + sk,
+        dom: 'tp',
+        ordering: false,
+        responsive: true,
+        columnDefs: [{
+            "render": function (data, type, row) {
+                let renderdata = '';
+                if (data == 0) {
+                    renderdata += var0_label;
+                } else if (data == 1) {
+                    renderdata += var1_label;
+                } else if (data == 2) {
+                    renderdata += var2_label;
+                } else if (data == 3) {
+                    renderdata += var3_label;
+                } else if (data == 4) {
+                    renderdata += var4_label;
+                } else if (data == 5) {
+                    renderdata += var5_label;
+                } else if (data == 6) {
+                    renderdata += var6_label;
+                } else if (data == 7) {
+                    renderdata += var7_label;
+                } else if (data == 8) {
+                    renderdata += var8_label;
+                } else if (data == 9) {
+                    renderdata += var9_label;
+                } else if (data == 10) {
+                    renderdata += var10_label;
+                } else if (data == 11) {
+                    renderdata += var11_label;
+                } else if (data == 12) {
+                    renderdata += var12_label;
+                } else if (data == 12) {
+                    renderdata += var12_label;
+                } else if (data == 13) {
+                    renderdata += var13_label;
+                } else if (data == 14) {
+                    renderdata += var14_label;
+                } else if (data == 15) {
+                    renderdata += var15_label;
+                } else if (data == 16) {
+                    renderdata += var16_label;
+                } else if (data == 17) {
+                    renderdata += var17_label;
+                } else if (data == 18) {
+                    renderdata += var18_label;
+                } else if (data == 19) {
+                    renderdata += var19_label;
+                } else if (data == 20) {
+                    renderdata += var20_label;
+                } else if (data == 21) {
+                    renderdata += var21_label;
+                } else if (data == 22) {
+                    renderdata += var22_label;
+                } else if (data == 23) {
+                    renderdata += var23_label;
+                } else if (data == 24) {
+                    renderdata += var24_label;
+                } else if (data == 25) {
+                    renderdata += var25_label;
+                } else if (data == 26) {
+                    renderdata += var26_label;
+                } else if (data == 27) {
+                    renderdata += var27_label;
+                } else if (data == 28) {
+                    renderdata += var28_label;
+                } else if (data == 29) {
+                    renderdata += var29_label;
+                } else if (data == 30) {
+                    renderdata += var30_label;
+                } else if (data == 31) {
+                    renderdata += var31_label;
+                }
+
+
+                return renderdata;
+            },
+            "targets": 0
+        },
+        {
+            "render": function (data, type, row) {
+                renderdata = '';
+                if (row[1] == 'H') renderdata += 'มากกว่า ';
+                else renderdata += 'น้อยกว่า ';
+
+                renderdata += row[2]
+                return renderdata;
+            },
+            "targets": 1
+        },
+        {
+            "render": function (data, type, row) {
+                renderdata = '<p style="color:' + row[3] + '">' + row[3] + '</p>';
+                return renderdata;
+            },
+            "targets": 2
+        },
+        {
+            "render": function (data, type, row) {
+                renderdata = '<a href="ajax/07value32.php?action=del&id=' + esp_id + '&skey=' + sk + '&delparam=' + row[0] + '&delvalue=' + row[2] + '" class="btn btn-outline-danger btn-sm delete"><i class="fa-solid fa-trash-can"></i></a>';
+                return renderdata;
+            },
+            "targets": -1
+        }]
+    });
+
+    color_table.on('draw', function () {
+        setColor();
+    });
+
+    // del color
+    $('#color_table tbody').on('click', 'a.delete', function (e) {
+
+        e.preventDefault();
+
+        $.ajax({
+            url: $(this).attr('href'),
+            success: function (data) {
+                // alert(data); // show response from the php script.
+                // console.log(data);
+                if (data == 1) {
+                    color_table.ajax.reload(null, false);
+                }
+            }
+        });
+
+    });
+
+    function colorHandle() {
+        let prevParam = -1;
+        for (var i = 0; i < colorObject.data.length; i++) {
+
+            if (colorObject.data[i][0] == 0) {
+
+                if (var0[var0.length - 1] >= parseFloat(colorObject.data[i][2]) && colorObject.data[i][1] == 'H') {
+                    $("#var-0-value").css('color', colorObject.data[i][3])
+                }
+                else if (var0[var0.length - 1] <= parseFloat(colorObject.data[i][2]) && colorObject.data[i][1] == 'L') {
+                    $("#var-0-value").css('color', colorObject.data[i][3])
+                    prevParam = colorObject.data[i][0]
+                } else if (prevParam != colorObject.data[i][0]) {
+                    $("#var-0-value").css('color', 'white')
+                }
+            } else if (colorObject.data[i][0] == 1) {
+
+                if (var1[var1.length - 1] >= parseFloat(colorObject.data[i][2]) && colorObject.data[i][1] == 'H') {
+                    $("#var-1-value").css('color', colorObject.data[i][3])
+                }
+                else if (var1[var1.length - 1] <= parseFloat(colorObject.data[i][2]) && colorObject.data[i][1] == 'L') {
+                    $("#var-1-value").css('color', colorObject.data[i][3])
+                    prevParam = colorObject.data[i][0]
+                } else if (prevParam != colorObject.data[i][0]) {
+                    $("#var-1-value").css('color', 'white')
+                }
+            } else if (colorObject.data[i][0] == 2) {
+                if (var2[var2.length - 1] >= parseFloat(colorObject.data[i][2]) && colorObject.data[i][1] == 'H') {
+                    $("#var-2-value").css('color', colorObject.data[i][3])
+                }
+                else if (var2[var2.length - 1] <= parseFloat(colorObject.data[i][2]) && colorObject.data[i][1] == 'L') {
+                    $("#var-2-value").css('color', colorObject.data[i][3])
+                    prevParam = colorObject.data[i][0]
+                } else if (prevParam != colorObject.data[i][0]) {
+                    $("#var-2-value").css('color', 'white')
+                }
+            } else if (colorObject.data[i][0] == 3) {
+                if (var3[var3.length - 1] >= parseFloat(colorObject.data[i][2]) && colorObject.data[i][1] == 'H') {
+                    $("#var-3-value").css('color', colorObject.data[i][3])
+                }
+                else if (var3[var3.length - 1] <= parseFloat(colorObject.data[i][2]) && colorObject.data[i][1] == 'L') {
+                    $("#var-3-value").css('color', colorObject.data[i][3])
+                    prevParam = colorObject.data[i][0]
+                } else if (prevParam != colorObject.data[i][0]) {
+                    $("#var-3-value").css('color', 'white')
+                }
+            } else if (colorObject.data[i][0] == 4) {
+                if (var4[var4.length - 1] >= parseFloat(colorObject.data[i][2]) && colorObject.data[i][1] == 'H') {
+                    $("#var-4-value").css('color', colorObject.data[i][3])
+                }
+                else if (var4[var4.length - 1] <= parseFloat(colorObject.data[i][2]) && colorObject.data[i][1] == 'L') {
+                    $("#var-4-value").css('color', colorObject.data[i][3])
+                    prevParam = colorObject.data[i][0]
+                } else if (prevParam != colorObject.data[i][0]) {
+                    $("#var-4-value").css('color', 'white')
+                }
+            } else if (colorObject.data[i][0] == 5) {
+                if (var5[var5.length - 1] >= parseFloat(colorObject.data[i][2]) && colorObject.data[i][1] == 'H') {
+                    $("#var-5-value").css('color', colorObject.data[i][3])
+                }
+                else if (var5[var5.length - 1] <= parseFloat(colorObject.data[i][2]) && colorObject.data[i][1] == 'L') {
+                    $("#var-5-value").css('color', colorObject.data[i][3])
+                    prevParam = colorObject.data[i][0]
+                } else if (prevParam != colorObject.data[i][0]) {
+                    $("#var-5-value").css('color', 'white')
+                }
+            } else if (colorObject.data[i][0] == 6) {
+                if (var6[var6.length - 1] >= parseFloat(colorObject.data[i][2]) && colorObject.data[i][1] == 'H') {
+                    $("#var-6-value").css('color', colorObject.data[i][3])
+                }
+                else if (var6[var6.length - 1] <= parseFloat(colorObject.data[i][2]) && colorObject.data[i][1] == 'L') {
+                    $("#var-6-value").css('color', colorObject.data[i][3])
+                    prevParam = colorObject.data[i][0]
+                } else if (prevParam != colorObject.data[i][0]) {
+                    $("#var-6-value").css('color', 'white')
+                }
+            } else if (colorObject.data[i][0] == 7) {
+                if (var7[var7.length - 1] >= parseFloat(colorObject.data[i][2]) && colorObject.data[i][1] == 'H') {
+                    $("#var-7-value").css('color', colorObject.data[i][3])
+                }
+                else if (var7[var7.length - 1] <= parseFloat(colorObject.data[i][2]) && colorObject.data[i][1] == 'L') {
+                    $("#var-7-value").css('color', colorObject.data[i][3])
+                    prevParam = colorObject.data[i][0]
+                } else if (prevParam != colorObject.data[i][0]) {
+                    $("#var-7-value").css('color', 'white')
+                }
+            } else if (colorObject.data[i][0] == 8) {
+
+                if (var8[var8.length - 1] >= parseFloat(colorObject.data[i][2]) && colorObject.data[i][1] == 'H') {
+                    $("#var-8-value").css('color', colorObject.data[i][3])
+                }
+                else if (var8[var8.length - 1] <= parseFloat(colorObject.data[i][2]) && colorObject.data[i][1] == 'L') {
+                    $("#var-8-value").css('color', colorObject.data[i][3])
+                    prevParam = colorObject.data[i][0]
+                } else if (prevParam != colorObject.data[i][0]) {
+                    $("#var-8-value").css('color', 'white')
+                }
+            } else if (colorObject.data[i][0] == 9) {
+                if (var9[var9.length - 1] >= parseFloat(colorObject.data[i][2]) && colorObject.data[i][1] == 'H') {
+                    $("#var-9-value").css('color', colorObject.data[i][3])
+                }
+                else if (var9[var9.length - 1] <= parseFloat(colorObject.data[i][2]) && colorObject.data[i][1] == 'L') {
+                    $("#var-9-value").css('color', colorObject.data[i][3])
+                    prevParam = colorObject.data[i][0]
+                } else if (prevParam != colorObject.data[i][0]) {
+                    $("#var-9-value").css('color', 'white')
+                }
+            } else if (colorObject.data[i][0] == 10) {
+                if (var10[var1.length - 1] >= parseFloat(colorObject.data[i][2]) && colorObject.data[i][1] == 'H') {
+                    $("#var-10-value").css('color', colorObject.data[i][3])
+                }
+                else if (var10[var10.length - 1] <= parseFloat(colorObject.data[i][2]) && colorObject.data[i][1] == 'L') {
+                    $("#var-10-value").css('color', colorObject.data[i][3])
+                    prevParam = colorObject.data[i][0]
+                } else if (prevParam != colorObject.data[i][0]) {
+                    $("#var-10-value").css('color', 'white')
+                }
+            } else if (colorObject.data[i][0] == 11) {
+                if (var11[var11.length - 1] >= parseFloat(colorObject.data[i][2]) && colorObject.data[i][1] == 'H') {
+                    $("#var-11-value").css('color', colorObject.data[i][3])
+                }
+                else if (var11[var11.length - 1] <= parseFloat(colorObject.data[i][2]) && colorObject.data[i][1] == 'L') {
+                    $("#var-11-value").css('color', colorObject.data[i][3])
+                    prevParam = colorObject.data[i][0]
+                } else if (prevParam != colorObject.data[i][0]) {
+                    $("#var-11-value").css('color', 'white')
+                }
+            } else if (colorObject.data[i][0] == 12) {
+                if (var12[var12.length - 1] >= parseFloat(colorObject.data[i][2]) && colorObject.data[i][1] == 'H') {
+                    $("#var-12-value").css('color', colorObject.data[i][3])
+                }
+                else if (var12[var12.length - 1] <= parseFloat(colorObject.data[i][2]) && colorObject.data[i][1] == 'L') {
+                    $("#var-12-value").css('color', colorObject.data[i][3])
+                    prevParam = colorObject.data[i][0]
+                } else if (prevParam != colorObject.data[i][0]) {
+                    $("#var-12-value").css('color', 'white')
+                }
+            } else if (colorObject.data[i][0] == 13) {
+                if (var13[var13.length - 1] >= parseFloat(colorObject.data[i][2]) && colorObject.data[i][1] == 'H') {
+                    $("#var-13-value").css('color', colorObject.data[i][3])
+                }
+                else if (var13[var13.length - 1] <= parseFloat(colorObject.data[i][2]) && colorObject.data[i][1] == 'L') {
+                    $("#var-13-value").css('color', colorObject.data[i][3])
+                    prevParam = colorObject.data[i][0]
+                } else if (prevParam != colorObject.data[i][0]) {
+                    $("#var-13-value").css('color', 'white')
+                }
+            } else if (colorObject.data[i][0] == 14) {
+                if (var14[var14.length - 1] >= parseFloat(colorObject.data[i][2]) && colorObject.data[i][1] == 'H') {
+                    $("#var-14-value").css('color', colorObject.data[i][3])
+                }
+                else if (var14[var14.length - 1] <= parseFloat(colorObject.data[i][2]) && colorObject.data[i][1] == 'L') {
+                    $("#var-14-value").css('color', colorObject.data[i][3])
+                    prevParam = colorObject.data[i][0]
+                } else if (prevParam != colorObject.data[i][0]) {
+                    $("#var-14-value").css('color', 'white')
+                }
+            } else if (colorObject.data[i][0] == 15) {
+                if (var15[var15.length - 1] >= parseFloat(colorObject.data[i][2]) && colorObject.data[i][1] == 'H') {
+                    $("#var-15-value").css('color', colorObject.data[i][3])
+                }
+                else if (var15[var15.length - 1] <= parseFloat(colorObject.data[i][2]) && colorObject.data[i][1] == 'L') {
+                    $("#var-15-value").css('color', colorObject.data[i][3])
+                    prevParam = colorObject.data[i][0]
+                } else if (prevParam != colorObject.data[i][0]) {
+                    $("#var-15-value").css('color', 'white')
+                }
+            } else if (colorObject.data[i][0] == 16) {
+                if (var16[var16.length - 1] >= parseFloat(colorObject.data[i][2]) && colorObject.data[i][1] == 'H') {
+                    $("#var-16-value").css('color', colorObject.data[i][3])
+                }
+                else if (var16[var16.length - 1] <= parseFloat(colorObject.data[i][2]) && colorObject.data[i][1] == 'L') {
+                    $("#var-16-value").css('color', colorObject.data[i][3])
+                    prevParam = colorObject.data[i][0]
+                } else if (prevParam != colorObject.data[i][0]) {
+                    $("#var-16-value").css('color', 'white')
+                }
+            } else if (colorObject.data[i][0] == 17) {
+                if (var17[var17.length - 1] >= parseFloat(colorObject.data[i][2]) && colorObject.data[i][1] == 'H') {
+                    $("#var-17-value").css('color', colorObject.data[i][3])
+                }
+                else if (var17[var17.length - 1] <= parseFloat(colorObject.data[i][2]) && colorObject.data[i][1] == 'L') {
+                    $("#var-17-value").css('color', colorObject.data[i][3])
+                    prevParam = colorObject.data[i][0]
+                } else if (prevParam != colorObject.data[i][0]) {
+                    $("#var-17-value").css('color', 'white')
+                }
+            } else if (colorObject.data[i][0] == 18) {
+                if (var18[var18.length - 1] >= parseFloat(colorObject.data[i][2]) && colorObject.data[i][1] == 'H') {
+                    $("#var-18-value").css('color', colorObject.data[i][3])
+                }
+                else if (var18[var18.length - 1] <= parseFloat(colorObject.data[i][2]) && colorObject.data[i][1] == 'L') {
+                    $("#var-18-value").css('color', colorObject.data[i][3])
+                    prevParam = colorObject.data[i][0]
+                } else if (prevParam != colorObject.data[i][0]) {
+                    $("#var-18-value").css('color', 'white')
+                }
+            } else if (colorObject.data[i][0] == 19) {
+
+                if (var19[var19.length - 1] >= parseFloat(colorObject.data[i][2]) && colorObject.data[i][1] == 'H') {
+                    $("#var-19-value").css('color', colorObject.data[i][3])
+                }
+                else if (var19[var19.length - 1] <= parseFloat(colorObject.data[i][2]) && colorObject.data[i][1] == 'L') {
+                    $("#var-19-value").css('color', colorObject.data[i][3])
+                    prevParam = colorObject.data[i][0]
+                } else if (prevParam != colorObject.data[i][0]) {
+                    $("#var-19-value").css('color', 'white')
+                }
+            } else if (colorObject.data[i][0] == 20) {
+                if (var20[var20.length - 1] >= parseFloat(colorObject.data[i][2]) && colorObject.data[i][1] == 'H') {
+                    $("#var-20-value").css('color', colorObject.data[i][3])
+                }
+                else if (var20[var20.length - 1] <= parseFloat(colorObject.data[i][2]) && colorObject.data[i][1] == 'L') {
+                    $("#var-20-value").css('color', colorObject.data[i][3])
+                    prevParam = colorObject.data[i][0]
+                } else if (prevParam != colorObject.data[i][0]) {
+                    $("#var-20-value").css('color', 'white')
+                }
+            } else if (colorObject.data[i][0] == 21) {
+
+                if (var21[var21.length - 1] >= parseFloat(colorObject.data[i][2]) && colorObject.data[i][1] == 'H') {
+                    $("#var-21-value").css('color', colorObject.data[i][3])
+                }
+                else if (var21[var21.length - 1] <= parseFloat(colorObject.data[i][2]) && colorObject.data[i][1] == 'L') {
+                    $("#var-21-value").css('color', colorObject.data[i][3])
+                    prevParam = colorObject.data[i][0]
+                } else if (prevParam != colorObject.data[i][0]) {
+                    $("#var-21-value").css('color', 'white')
+                }
+            } else if (colorObject.data[i][0] == 22) {
+                if (var22[var22.length - 1] >= parseFloat(colorObject.data[i][2]) && colorObject.data[i][1] == 'H') {
+                    $("#var-22-value").css('color', colorObject.data[i][3])
+                }
+                else if (var22[var22.length - 1] <= parseFloat(colorObject.data[i][2]) && colorObject.data[i][1] == 'L') {
+                    $("#var-22-value").css('color', colorObject.data[i][3])
+                    prevParam = colorObject.data[i][0]
+                } else if (prevParam != colorObject.data[i][0]) {
+                    $("#var-22-value").css('color', 'white')
+                }
+            } else if (colorObject.data[i][0] == 23) {
+                if (var23[var23.length - 1] >= parseFloat(colorObject.data[i][2]) && colorObject.data[i][1] == 'H') {
+                    $("#var-23-value").css('color', colorObject.data[i][3])
+                }
+                else if (var23[var23.length - 1] <= parseFloat(colorObject.data[i][2]) && colorObject.data[i][1] == 'L') {
+                    $("#var-23-value").css('color', colorObject.data[i][3])
+                    prevParam = colorObject.data[i][0]
+                } else if (prevParam != colorObject.data[i][0]) {
+                    $("#var-23-value").css('color', 'white')
+                }
+            } else if (colorObject.data[i][0] == 24) {
+                if (var24[var24.length - 1] >= parseFloat(colorObject.data[i][2]) && colorObject.data[i][1] == 'H') {
+                    $("#var-24-value").css('color', colorObject.data[i][3])
+                }
+                else if (var24[var24.length - 1] <= parseFloat(colorObject.data[i][2]) && colorObject.data[i][1] == 'L') {
+                    $("#var-24-value").css('color', colorObject.data[i][3])
+                    prevParam = colorObject.data[i][0]
+                } else if (prevParam != colorObject.data[i][0]) {
+                    $("#var-24-value").css('color', 'white')
+                }
+            } else if (colorObject.data[i][0] == 25) {
+                if (var25[var25.length - 1] >= parseFloat(colorObject.data[i][2]) && colorObject.data[i][1] == 'H') {
+                    $("#var-25-value").css('color', colorObject.data[i][3])
+                }
+                else if (var25[var25.length - 1] <= parseFloat(colorObject.data[i][2]) && colorObject.data[i][1] == 'L') {
+                    $("#var-25-value").css('color', colorObject.data[i][3])
+                    prevParam = colorObject.data[i][0]
+                } else if (prevParam != colorObject.data[i][0]) {
+                    $("#var-25-value").css('color', 'white')
+                }
+            } else if (colorObject.data[i][0] == 26) {
+                if (var26[var26.length - 1] >= parseFloat(colorObject.data[i][2]) && colorObject.data[i][1] == 'H') {
+                    $("#var-26-value").css('color', colorObject.data[i][3])
+                }
+                else if (var26[var26.length - 1] <= parseFloat(colorObject.data[i][2]) && colorObject.data[i][1] == 'L') {
+                    $("#var-26-value").css('color', colorObject.data[i][3])
+                    prevParam = colorObject.data[i][0]
+                } else if (prevParam != colorObject.data[i][0]) {
+                    $("#var-26-value").css('color', 'white')
+                }
+            } else if (colorObject.data[i][0] == 27) {
+                if (var27[var27.length - 1] >= parseFloat(colorObject.data[i][2]) && colorObject.data[i][1] == 'H') {
+                    $("#var-27-value").css('color', colorObject.data[i][3])
+                }
+                else if (var27[var27.length - 1] <= parseFloat(colorObject.data[i][2]) && colorObject.data[i][1] == 'L') {
+                    $("#var-27-value").css('color', colorObject.data[i][3])
+                    prevParam = colorObject.data[i][0]
+                } else if (prevParam != colorObject.data[i][0]) {
+                    $("#var-27-value").css('color', 'white')
+                }
+            } else if (colorObject.data[i][0] == 28) {
+                if (var28[var28.length - 1] >= parseFloat(colorObject.data[i][2]) && colorObject.data[i][1] == 'H') {
+                    $("#var-28-value").css('color', colorObject.data[i][3])
+                }
+                else if (var28[var28.length - 1] <= parseFloat(colorObject.data[i][2]) && colorObject.data[i][1] == 'L') {
+                    $("#var-28-value").css('color', colorObject.data[i][3])
+                    prevParam = colorObject.data[i][0]
+                } else if (prevParam != colorObject.data[i][0]) {
+                    $("#var-28-value").css('color', 'white')
+                }
+            } else if (colorObject.data[i][0] == 29) {
+                if (var29[var29.length - 1] >= parseFloat(colorObject.data[i][2]) && colorObject.data[i][1] == 'H') {
+                    $("#var-29-value").css('color', colorObject.data[i][3])
+                }
+                else if (var29[var29.length - 1] <= parseFloat(colorObject.data[i][2]) && colorObject.data[i][1] == 'L') {
+                    $("#var-29-value").css('color', colorObject.data[i][3])
+                    prevParam = colorObject.data[i][0]
+                } else if (prevParam != colorObject.data[i][0]) {
+                    $("#var-29-value").css('color', 'white')
+                }
+            } else if (colorObject.data[i][0] == 30) {
+                if (var30[var30.length - 1] >= parseFloat(colorObject.data[i][2]) && colorObject.data[i][1] == 'H') {
+                    $("#var-30-value").css('color', colorObject.data[i][3])
+                }
+                else if (var30[var30.length - 1] <= parseFloat(colorObject.data[i][2]) && colorObject.data[i][1] == 'L') {
+                    $("#var-30-value").css('color', colorObject.data[i][3])
+                    prevParam = colorObject.data[i][0]
+                } else if (prevParam != colorObject.data[i][0]) {
+                    $("#var-30-value").css('color', 'white')
+                }
+            } else if (colorObject.data[i][0] == 31) {
+                if (var31[var31.length - 1] >= parseFloat(colorObject.data[i][2]) && colorObject.data[i][1] == 'H') {
+                    $("#var-31-value").css('color', colorObject.data[i][3])
+                }
+                else if (var31[var31.length - 1] <= parseFloat(colorObject.data[i][2]) && colorObject.data[i][1] == 'L') {
+                    $("#var-31-value").css('color', colorObject.data[i][3])
+                    prevParam = colorObject.data[i][0]
+                } else if (prevParam != colorObject.data[i][0]) {
+                    $("#var-31-value").css('color', 'white')
+                }
+            }
+        }
+    }
+
 });

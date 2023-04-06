@@ -4,3 +4,12 @@
 2023-04-03 15:26:37, EspID:910099
 -[7value32 sec], 2023-04-03 15:26:37, error:["23000",19,"UNIQUE constraint failed: 7_sec.time"]
 
+2023-04-05 18:54:08, EspID:910099
+-[7value32 sec], 2023-04-05 18:54:08, error:["23000",19,"UNIQUE constraint failed: 7_sec.time"]
+
+2023-04-06 10:59:43, EspID:910099
+-[7value32 sec], 2023-04-06 10:59:43, error:["23000",19,"UNIQUE constraint failed: 7_sec.time"]
+
+2023-04-06 11:00:13, EspID:910099
+-[7value32 sec], 2023-04-06 11:00:13, error:["23000",19,"UNIQUE constraint failed: 7_sec.time"]
+

@@ -37,6 +37,9 @@ if (!isset($activedevice)) {
                     <div class="card-header">
                         <h5 class="card-title">ค่าล่าสุด</h5>
                         <div class="card-tools">
+                            <button type="button" class="btn btn-link" data-toggle="modal" data-target="#editvarcolor">
+                                <i class="fa-solid fa-bell text-light"></i>
+                            </button>
                             <button type="button" class="btn btn-link" data-toggle="modal" data-target="#editvarname">
                                 <i class="bi bi-pencil-square text-light"></i>
                             </button>
@@ -103,7 +106,7 @@ if (!isset($activedevice)) {
                                 <button type="button" id="month_csvdownload" class="btn btn-outline-secondary text-light btn-sm month-view-page" title="download csv file">
                                     <i class="fa-solid fa-download"></i>&nbsp;<span>CSV</span>
                                 </button>
-                                
+
                                 <button type="button" id="csvdownload" class="btn btn-outline-secondary text-light btn-sm  history_view_class" title="download csv file">
                                     <i class="fa-solid fa-download"></i>&nbsp;<span>CSV</span>
                                 </button>
@@ -231,6 +234,153 @@ if (!isset($activedevice)) {
                     <button type="submit" class="btn btn-primary">ตกลง</button>
                 </div>
             </form>
+        </div>
+    </div>
+</div>
+
+<!-- for color var -->
+<div class="modal fade" id="editvarcolor" tabindex="-1" aria-labelledby="edit-device-name" aria-hidden="true">
+
+
+    <link rel="stylesheet" type="text/css" href="includes/dist/js/coloris.min.css">
+    <script type="text/javascript" src="includes/dist/js/coloris.min.js"></script>
+
+    <style type="text/css">
+        .coloris-select {
+            flex-shrink: 0;
+            width: 300px;
+            margin-bottom: 30px;
+        }
+
+        .clr-picker {
+            z-index: 2000;
+        }
+    </style>
+
+
+
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form id="edit-color-form" method="post" action="ajax/07value32.php?action=savecolor">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="edit-var-color">แก้ไขชื่อ Parameter</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col">
+                                        <label for="var-color-select" data-toggle="tooltip" title="ค่าที่ต้องการ">Parameter</label>
+                                        <select class="form-control" name="var-color-select" id="var-color-select">
+                                            <?php for ($var = 0; $var < 32; $var++) : ?>
+                                                <option value="<?= $var ?>" id="var-color-<?= $var ?>">Var <?= $var ?></option>
+                                            <?php endfor; ?>
+                                        </select>
+                                    </div>
+                                    <div class="col">
+                                        <label for="var-color-condition" data-toggle="tooltip" title="เงื่อนไขที่ต้องการ">Parameter</label>
+                                        <select class="form-control" id="var-color-condition" name="var-color-condition">
+                                            <option value="H">มากกว่า</option>
+                                            <option value="L">น้อยกว่า</option>
+                                        </select>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="var-color-value">ค่าที่ต้องการ</label>
+                                            <input type="number" step="any" class="form-control form-control-border" name="var-color-value" />
+                                        </div>
+                                    </div>
+
+                                    <div class="col coloris-select">
+                                        <label for="var-color-color">สี</label>
+                                        <div class="clr-field" style="color: rgb(89, 145, 138);"><button type="button" aria-labelledby="clr-open-label"></button>
+                                            <input id="var-color-color" name="var-color-color" type="text" value="green" data-coloris="">
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <input type="hidden" name="id" value="<?= $_GET['id'] ?>">
+                            <input type="hidden" name="skey" value="<?= $_SESSION['skey'] ?>" />
+                        </div>
+                    </div>
+                    <div class="div" style="text-align: right">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                        <button type="submit" class="btn btn-primary">เพิ่ม</button>
+                    </div>
+
+                    <!-- <div class="modal-footer"> -->
+                    <hr class="mb-3">
+                    <h3>แจ้งเตือนสี</h3>
+                    <table class="table table-hover table-striped text-center text-light" id="color_table" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th scope="col">Paremeter</th>
+                                <th scope="col">Condition</th>
+                                <th scope="col">Color</th>
+                                <th scope="col">Delete</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                <!-- </div> -->
+
+            </form>
+
+            <script type="text/javascript">
+                /** Default configuration **/
+
+                Coloris({
+                    el: '.coloris',
+                    swatches: [
+                        '#264653',
+                        '#2a9d8f',
+                        '#e9c46a',
+                        '#f4a261',
+                        '#e76f51',
+                        '#d62828',
+                        '#023e8a',
+                        '#0077b6',
+                        '#0096c7',
+                        '#00b4d8',
+                        '#48cae4'
+                    ]
+                });
+
+                /** Instances **/
+
+                Coloris.setInstance('.instance1', {
+                    theme: 'pill',
+                    themeMode: 'dark',
+                    formatToggle: true,
+                    closeButton: true,
+                    clearButton: true,
+                    swatches: [
+                        '#067bc2',
+                        '#84bcda',
+                        '#80e377',
+                        '#ecc30b',
+                        '#f37748',
+                        '#d56062'
+                    ]
+                });
+
+                Coloris.setInstance('.instance2', {
+                    theme: 'polaroid'
+                });
+
+                Coloris.setInstance('.instance3', {
+                    theme: 'polaroid',
+                    swatchesOnly: true
+                });
+            </script>
+
         </div>
     </div>
 </div>
