@@ -12,6 +12,14 @@
         $thisSKEY = $_SESSION['skey'];
     }
 
+    if (!isset($esp_id)) {
+        require_once($_SERVER['DOCUMENT_ROOT'] . '/includes/init.php');
+        $db = new Database();
+        $conn = $db->getConn();
+        $esp_id = Esp_ID::getByESPID($conn, $thisID);
+        // var_dump($esp_id);
+    }
+
     ?>
 
 

@@ -13,10 +13,8 @@ require 'includes/header.php';
 
 <?php
 // device to display
-if (isset($_GET['id'])) {
+if (!isset($esp_id)) {
   $esp_id = Esp_ID::getByESPID($conn, $_GET['id']);
-  // var_dump($esp_id);
-  // var_dump($activedevice['project_id']);
 }
 ?>
 
@@ -206,3 +204,16 @@ if ($esp_id) {
     // setInterval(function(){$("#this-time").html(moment().format('DD-MM-YYYY HH:mm:ss'));},1000);
   });
 </script>
+
+<?php 
+$projects = explode(",", $esp_id->project_id);
+ if($projects[0] != 0) : ?>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("#dashboard-tab").remove();
+
+  });
+</script>
+
+<?php endif; ?>
