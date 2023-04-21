@@ -205,6 +205,7 @@ $(function () {
         $("#this-time").hide();
 
         e.preventDefault();
+        $(".clr-picker").remove();
 
         $.ajax({
             url: "ajax/get-pin.php",
