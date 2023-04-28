@@ -215,4 +215,59 @@ class Data_0_sec
         }
 
     }
+
+    
+    // for json file
+    public function creatTableColor()
+    {
+        $commands = [
+            'CREATE TABLE IF NOT EXISTS \'0_color\'(
+                                            data	TEXT,
+            time TEXT  DEFAULT CURRENT_TIMESTAMP)'
+        ];
+        
+        $error = [];
+        foreach ($commands as $command) {
+            if (!$this->pdo->exec($command)) {
+                $error[] = 1;
+            }
+        }
+        if (empty($error)) {
+            return true;
+        }
+    }
+
+
+    public function insertColor($json)
+    {
+        $this->creatTableColor();
+
+        $sql = "INSERT INTO '0_color' (data)
+                VALUES(:json)";
+
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':json', $json);
+
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            return $stmt->errorInfo();
+        }
+
+    }
+
+    public function getColor()
+    {
+        $this->creatTableColor();
+
+        $sql = "SELECT * FROM '0_color'
+                ORDER BY time DESC";
+
+        $stmt = $this->pdo->prepare($sql);
+        
+        if ($stmt->execute()) {
+            $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+            return $result;
+        }
+    }
 }

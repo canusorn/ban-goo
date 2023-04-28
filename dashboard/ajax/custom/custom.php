@@ -9,7 +9,7 @@ if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) &&  strtolower($_SERVER['HTTP_X_RE
     if (!empty($_SERVER['HTTP_REFERER']) && strpos($_SERVER['HTTP_REFERER'], $_SERVER['HTTP_HOST'] . "/dashboard") && isset($_REQUEST['id'])) {
 
         // >>>> Security check
-        if (empty($_SESSION['skey']) || empty($_POST['skey']) || ($_SESSION['skey'] != $_POST['skey'])) {
+        if (empty($_SESSION['skey']) || empty($_REQUEST['skey']) || ($_SESSION['skey'] != $_REQUEST['skey'])) {
             Auth::block();
         } else {
             // echo "AJAX request";
@@ -75,6 +75,49 @@ if ($esp_id) {
             echo $data->insertLabel(json_encode($var));
 
             exit;
+        } else if (isset($_GET["action"])) {
+
+            $data = new Data_0_sec($esp_id);
+            $oldColor = json_decode(($data->getColor())['data'], true);
+
+            if ($_GET['action'] == "savecolor") {
+                // var_dump($_POST);
+
+                $newColor = [["param" => $_POST['var-color-select'], "condition" => $_POST['var-color-condition'], "value" => $_POST['var-color-value'], "color" => $_POST['var-color-color']]];
+
+                if ($oldColor) {
+                    $newColor = array_merge($newColor, $oldColor);
+                }
+
+                usort($newColor, function ($a, $b) {
+                    return $a['param'] <=> $b['param'];
+                });
+
+                echo $data->insertColor(json_encode($newColor));
+            } else if ($_GET['action'] == 'getcolor') {
+
+                $data = [];
+                if ($oldColor) {
+                    foreach ($oldColor as $color) {
+                        $data[] = [$color['param'], $color['condition'], $color['value'], $color['color']];
+                    }
+                }
+                $result = ["data" => $data];
+                echo json_encode($result, JSON_UNESCAPED_UNICODE);
+                exit;
+            } else if ($_GET['action'] == 'del') {
+
+                foreach ($oldColor as $key => $value) {
+                    if ($value["param"] == $_REQUEST["delparam"] && $value["value"] == $_REQUEST["delvalue"]) {
+                        unset($oldColor[$key]);
+                    }
+                }
+                usort($oldColor, function ($a, $b) {
+                    return $a['param'] <=> $b['param'];
+                });
+
+                echo $data->insertColor(json_encode($oldColor));
+            }
         }
     } catch (Throwable $e) {
         die("nodata");

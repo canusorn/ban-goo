@@ -229,7 +229,7 @@ $(function () {
     $('#dashboard-tab').click(function (e) {
 
         $("#this-time").show();
-
+        $(".clr-picker").remove();
         e.preventDefault();
 
         $.ajax({
