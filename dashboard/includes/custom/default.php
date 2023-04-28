@@ -403,50 +403,6 @@ if (!isset($activedevice)) {
 
             <script type="text/javascript">
                 /** Default configuration **/
-
-                Coloris({
-                    el: '.coloris',
-                    swatches: [
-                        '#264653',
-                        '#2a9d8f',
-                        '#e9c46a',
-                        '#f4a261',
-                        '#e76f51',
-                        '#d62828',
-                        '#023e8a',
-                        '#0077b6',
-                        '#0096c7',
-                        '#00b4d8',
-                        '#48cae4'
-                    ]
-                });
-
-                /** Instances **/
-
-                Coloris.setInstance('.instance1', {
-                    theme: 'pill',
-                    themeMode: 'dark',
-                    formatToggle: true,
-                    closeButton: true,
-                    clearButton: true,
-                    swatches: [
-                        '#067bc2',
-                        '#84bcda',
-                        '#80e377',
-                        '#ecc30b',
-                        '#f37748',
-                        '#d56062'
-                    ]
-                });
-
-                Coloris.setInstance('.instance2', {
-                    theme: 'polaroid'
-                });
-
-                Coloris.setInstance('.instance3', {
-                    theme: 'polaroid',
-                    swatchesOnly: true
-                });
             </script>
 
         </div>
@@ -461,6 +417,7 @@ if (!isset($activedevice)) {
     var p_id = 0;
     var esp_id = <?= $_REQUEST['id'] ?>;
     var sk = '<?= $_SESSION['skey']; ?>';
+    $('#project-0-tab').addClass("active");
 </script>
 <script type="text/javascript" src="js/00custom.js?n=8"></script>
 <script type="text/javascript" src="js/line-timer.js?n=1"></script>

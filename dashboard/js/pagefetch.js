@@ -2,27 +2,27 @@ $(function () {
 
     $('#project-0-tab').click(function (e) {
 
-        $("#this-time").hide();
+        // $("#this-time").hide();
 
-        e.preventDefault();
+        // e.preventDefault();
 
-        $.ajax({
-            url: "ajax/get-project.php",
-            type: 'post',
-            data: {
-                id: esp_id,
-                skey: sk,
-                p_id: 0
-            },
-            success: function (data) {
-                // console.log(data);
-                $("#body-content").html(data);
-                window.history.pushState("Details", "Title", "/dashboard/device.php?id=" + esp_id + "&project=0");
-                $("#project-tab > li > a").removeClass("active");
-                $('#dashboard-tab').removeClass("active");
-                $('#project-0-tab').addClass("active");
-            }
-        });
+        // $.ajax({
+        //     url: "ajax/get-project.php",
+        //     type: 'post',
+        //     data: {
+        //         id: esp_id,
+        //         skey: sk,
+        //         p_id: 0
+        //     },
+        //     success: function (data) {
+        //         // console.log(data);
+        //         $("#body-content").html(data);
+        //         window.history.pushState("Details", "Title", "/dashboard/device.php?id=" + esp_id + "&project=0");
+        //         $("#project-tab > li > a").removeClass("active");
+        //         $('#dashboard-tab').removeClass("active");
+        //         $('#project-0-tab').addClass("active");
+        //     }
+        // });
     });
 
     $('#project-1-tab').click(function (e) {
@@ -177,27 +177,27 @@ $(function () {
 
     $('#project-7-tab').click(function (e) {
 
-        $("#this-time").hide();
+        // $("#this-time").hide();
 
-        e.preventDefault();
+        // e.preventDefault();
 
-        $.ajax({
-            url: "ajax/get-project.php?v=" + version,
-            type: 'post',
-            data: {
-                id: esp_id,
-                skey: sk,
-                p_id: 7
-            },
-            success: function (data) {
-                // console.log(data);
-                $("#body-content").html(data);
-                window.history.pushState("Details", "Title", "/dashboard/device.php?id=" + esp_id + "&project=7");
-                $("#project-tab > li > a").removeClass("active");
-                $('#dashboard-tab').removeClass("active");
-                $('#project-7-tab').addClass("active");
-            }
-        });
+        // $.ajax({
+        //     url: "ajax/get-project.php?v=" + version,
+        //     type: 'post',
+        //     data: {
+        //         id: esp_id,
+        //         skey: sk,
+        //         p_id: 7
+        //     },
+        //     success: function (data) {
+        //         // console.log(data);
+        //         $("#body-content").html(data);
+        //         window.history.pushState("Details", "Title", "/dashboard/device.php?id=" + esp_id + "&project=7");
+        //         $("#project-tab > li > a").removeClass("active");
+        //         $('#dashboard-tab').removeClass("active");
+        //         $('#project-7-tab').addClass("active");
+        //     }
+        // });
     });
 
     $('#pin-tab').click(function (e) {

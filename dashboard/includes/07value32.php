@@ -391,6 +391,7 @@ if (!isset($activedevice)) {
     var esp_id = <?= $_REQUEST['id'] ?>;
     var sk = '<?= $_SESSION['skey']; ?>';
     $("#dashboard-tab").remove();
+    $('#project-7-tab').addClass("active");
 </script>
 <script type="text/javascript" src="js/07value32.js?n=8"></script>
 <script type="text/javascript" src="js/line-timer.js?n=1"></script>
